@@ -1,4 +1,4 @@
-package com.jhomlala.better_player
+package uz.shs.better_player_plus
 
 import android.net.Uri
 import com.google.android.exoplayer2.upstream.DataSource

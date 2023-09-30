@@ -1,4 +1,4 @@
-package com.jhomlala.better_player
+package uz.shs.better_player_plus
 
 import com.google.android.exoplayer2.DefaultLoadControl
 

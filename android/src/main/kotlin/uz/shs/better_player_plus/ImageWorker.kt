@@ -1,4 +1,4 @@
-package com.jhomlala.better_player
+package uz.shs.better_player_plus
 
 import android.content.Context
 import android.graphics.Bitmap

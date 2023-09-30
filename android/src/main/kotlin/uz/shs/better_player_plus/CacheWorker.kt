@@ -1,11 +1,11 @@
-package com.jhomlala.better_player
+package uz.shs.better_player_plus
 
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import com.jhomlala.better_player.DataSourceUtils.isHTTP
-import com.jhomlala.better_player.DataSourceUtils.getUserAgent
-import com.jhomlala.better_player.DataSourceUtils.getDataSourceFactory
+import com.jhomlala.better_player_plus.DataSourceUtils.isHTTP
+import com.jhomlala.better_player_plus.DataSourceUtils.getUserAgent
+import com.jhomlala.better_player_plus.DataSourceUtils.getDataSourceFactory
 import androidx.work.WorkerParameters
 import com.google.android.exoplayer2.upstream.cache.CacheWriter
 import androidx.work.Worker

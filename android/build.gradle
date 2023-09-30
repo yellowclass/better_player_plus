@@ -1,4 +1,4 @@
-group 'com.jhomlala.better_player.better_player'
+group 'uz.shs.better_player_plus'
 version '1.0-SNAPSHOT'
 
 buildscript {
