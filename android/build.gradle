@@ -2,7 +2,7 @@ group 'uz.shs.better_player_plus'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.exoPlayerVersion = "2.17.1"
+    ext.exoPlayerVersion = "2.18.1"
     ext.lifecycleVersion = "2.6.2"
     ext.annotationVersion = "1.7.0"
     ext.workVersion = "2.8.1"
