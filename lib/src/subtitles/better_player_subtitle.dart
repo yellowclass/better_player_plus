@@ -24,7 +24,7 @@ class BetterPlayerSubtitle {
         return _handle3LinesAndMoreSubtitles(scanner, isWebVTT);
       }
       return BetterPlayerSubtitle._();
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("Failed to parse subtitle line: $value");
       return BetterPlayerSubtitle._();
     }
@@ -39,7 +39,7 @@ class BetterPlayerSubtitle {
 
       return BetterPlayerSubtitle._(
           index: -1, start: start, end: end, texts: texts);
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("Failed to parse subtitle line: $scanner");
       return BetterPlayerSubtitle._();
     }
@@ -65,7 +65,7 @@ class BetterPlayerSubtitle {
       final texts = scanner.sublist(firstLineOfText, scanner.length);
       return BetterPlayerSubtitle._(
           index: index, start: start, end: end, texts: texts);
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("Failed to parse subtitle line: $scanner");
       return BetterPlayerSubtitle._();
     }
@@ -102,7 +102,7 @@ class BetterPlayerSubtitle {
           seconds: int.tryParse(secsAndMillsSplit[0])!,
           milliseconds: int.tryParse(secsAndMillsSplit[1])!);
       return result;
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("Failed to process value: $value");
       return const Duration();
     }

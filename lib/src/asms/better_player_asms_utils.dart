@@ -50,7 +50,7 @@ class BetterPlayerAsmsUtils {
       }).asFuture<String?>();
 
       return data;
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("GetDataFromUrl failed: $exception");
       return null;
     }

@@ -13,7 +13,9 @@ import 'package:better_player_plus/src/hls/hls_parser/segment.dart';
 import 'package:better_player_plus/src/hls/hls_parser/util.dart';
 
 ///HLS helper class
-class BetterPlayerHlsUtils {
+sealed class BetterPlayerHlsUtils {
+  BetterPlayerHlsUtils._();
+
   static Future<BetterPlayerAsmsDataHolder> parse(
       String data, String masterPlaylistUrl) async {
     List<BetterPlayerAsmsTrack> tracks = [];
@@ -28,11 +30,14 @@ class BetterPlayerHlsUtils {
       tracks = list[0] as List<BetterPlayerAsmsTrack>;
       subtitles = list[1] as List<BetterPlayerAsmsSubtitle>;
       audios = list[2] as List<BetterPlayerAsmsAudioTrack>;
-    } catch (exception) {
-      BetterPlayerUtils.log("Exception on hls parse: $exception");
+    } on Exception catch (exception) {
+      BetterPlayerUtils.log('Exception on hls parse: $exception');
     }
     return BetterPlayerAsmsDataHolder(
-        tracks: tracks, audios: audios, subtitles: subtitles);
+      tracks: tracks,
+      audios: audios,
+      subtitles: subtitles,
+    );
   }
 
   static Future<List<BetterPlayerAsmsTrack>> parseTracks(
@@ -42,19 +47,26 @@ class BetterPlayerHlsUtils {
       final parsedPlaylist = await HlsPlaylistParser.create()
           .parseString(Uri.parse(masterPlaylistUrl), data);
       if (parsedPlaylist is HlsMasterPlaylist) {
-        parsedPlaylist.variants.forEach(
-          (variant) {
-            tracks.add(BetterPlayerAsmsTrack('', variant.format.width,
-                variant.format.height, variant.format.bitrate, 0, '', ''));
-          },
-        );
+        for (final variant in parsedPlaylist.variants) {
+          tracks.add(
+            BetterPlayerAsmsTrack(
+              '',
+              variant.format.width,
+              variant.format.height,
+              variant.format.bitrate,
+              0,
+              '',
+              '',
+            ),
+          );
+        }
       }
 
       if (tracks.isNotEmpty) {
         tracks.insert(0, BetterPlayerAsmsTrack.defaultTrack());
       }
-    } catch (exception) {
-      BetterPlayerUtils.log("Exception on parseSubtitles: $exception");
+    } on Exception catch (exception) {
+      BetterPlayerUtils.log('Exception on parseSubtitles: $exception');
     }
     return tracks;
   }
@@ -75,8 +87,8 @@ class BetterPlayerHlsUtils {
           }
         }
       }
-    } catch (exception) {
-      BetterPlayerUtils.log("Exception on parseSubtitles: $exception");
+    } on Exception catch (exception) {
+      BetterPlayerUtils.log('Exception on parseSubtitles: $exception');
     }
 
     return subtitles;
@@ -91,7 +103,7 @@ class BetterPlayerHlsUtils {
   static Future<BetterPlayerAsmsSubtitle?> _parseSubtitlesPlaylist(
       Rendition rendition) async {
     try {
-      final HlsPlaylistParser _hlsPlaylistParser = HlsPlaylistParser.create();
+      final HlsPlaylistParser hlsPlaylistParser = HlsPlaylistParser.create();
       final subtitleData =
           await BetterPlayerAsmsUtils.getDataFromUrl(rendition.url.toString());
       if (subtitleData == null) {
@@ -99,7 +111,7 @@ class BetterPlayerHlsUtils {
       }
 
       final parsedSubtitle =
-          await _hlsPlaylistParser.parseString(rendition.url, subtitleData);
+          await hlsPlaylistParser.parseString(rendition.url, subtitleData);
       final hlsMediaPlaylist = parsedSubtitle as HlsMediaPlaylist;
       final hlsSubtitlesUrls = <String>[];
 
@@ -107,13 +119,13 @@ class BetterPlayerHlsUtils {
       final bool isSegmented = hlsMediaPlaylist.segments.length > 1;
       int microSecondsFromStart = 0;
       for (final Segment segment in hlsMediaPlaylist.segments) {
-        final split = rendition.url.toString().split("/");
-        var realUrl = "";
+        final split = rendition.url.toString().split('/');
+        var realUrl = '';
         for (var index = 0; index < split.length - 1; index++) {
           // ignore: use_string_buffers
-          realUrl += "${split[index]}/";
+          realUrl += '${split[index]}/';
         }
-        if (segment.url?.startsWith("http") == true) {
+        if (segment.url?.startsWith('http') == true) {
           realUrl = segment.url!;
         } else {
           realUrl += segment.url!;
@@ -155,8 +167,8 @@ class BetterPlayerHlsUtils {
           segmentsTime: targetDuration,
           segments: asmsSegments,
           isDefault: isDefault);
-    } catch (exception) {
-      BetterPlayerUtils.log("Failed to process subtitles playlist: $exception");
+    } on Exception catch (exception) {
+      BetterPlayerUtils.log('Failed to process subtitles playlist: $exception');
       return null;
     }
   }

@@ -34,7 +34,7 @@ class BetterPlayerSubtitlesFactory {
         }
       }
       return subtitles;
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("Failed to read subtitles from file: $exception");
     }
     return [];
@@ -62,7 +62,7 @@ class BetterPlayerSubtitlesFactory {
 
       BetterPlayerUtils.log("Parsed total subtitles: ${subtitles.length}");
       return subtitles;
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log(
           "Failed to read subtitles from network: $exception");
     }
@@ -73,7 +73,7 @@ class BetterPlayerSubtitlesFactory {
       BetterPlayerSubtitlesSource source) {
     try {
       return _parseString(source.content!);
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log("Failed to read subtitles from memory: $exception");
     }
     return [];

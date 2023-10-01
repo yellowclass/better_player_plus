@@ -573,7 +573,7 @@ class VideoPlayerController extends ValueNotifier<VideoPlayerValue> {
     try {
       value = value.copyWith(speed: speed);
       await _applySpeed();
-    } catch (exception) {
+    } on Exception catch (exception) {
       value = value.copyWith(speed: previousSpeed);
       rethrow;
     }

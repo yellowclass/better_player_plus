@@ -1,8 +1,4 @@
-<p align="center">
-<img src="https://raw.githubusercontent.com/jhomlala/betterplayer/master/media/logo.png">
-</p>
-
-# Better Player
+# Better Player Plus
 [![pub package](https://img.shields.io/pub/v/better_player.svg)](https://pub.dartlang.org/packages/better_player)
 [![pub package](https://img.shields.io/github/license/jhomlala/betterplayer.svg?style=flat)](https://github.com/jhomlala/betterplayer)
 [![pub package](https://img.shields.io/badge/platform-flutter-blue.svg)](https://github.com/jhomlala/betterplayer)

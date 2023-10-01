@@ -90,7 +90,7 @@ class _BetterPlayerState extends State<BetterPlayer>
         final contextLocale = Localizations.localeOf(context);
         locale = contextLocale;
       }
-    } catch (exception) {
+    } on Exception catch (exception) {
       BetterPlayerUtils.log(exception.toString());
     }
     widget.controller.setupTranslations(locale);

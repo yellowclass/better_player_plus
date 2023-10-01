@@ -342,7 +342,7 @@ class MethodChannelVideoPlayer extends VideoPlayerPlatform {
               final num heightNum = map["height"] as num;
               height = heightNum.toDouble();
             }
-          } catch (exception) {
+          } on Exception catch (exception) {
             BetterPlayerUtils.log(exception.toString());
           }
 
