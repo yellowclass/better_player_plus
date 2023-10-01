@@ -3,9 +3,9 @@ package uz.shs.better_player_plus
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import com.jhomlala.better_player_plus.DataSourceUtils.isHTTP
-import com.jhomlala.better_player_plus.DataSourceUtils.getUserAgent
-import com.jhomlala.better_player_plus.DataSourceUtils.getDataSourceFactory
+import uz.shs.better_player_plus.DataSourceUtils.isHTTP
+import uz.shs.better_player_plus.DataSourceUtils.getUserAgent
+import uz.shs.better_player_plus.DataSourceUtils.getDataSourceFactory
 import androidx.work.WorkerParameters
 import com.google.android.exoplayer2.upstream.cache.CacheWriter
 import androidx.work.Worker
