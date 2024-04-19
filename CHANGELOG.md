@@ -4,6 +4,7 @@
 * Kotlin version update to 1.9.22
 * Media3 version update to 1.3.1
 * gradle version update to 8.1.4
+* targetSdkVersion update to 34
 
 ## 1.0.5
 
